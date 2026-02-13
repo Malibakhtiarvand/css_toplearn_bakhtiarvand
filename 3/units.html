@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+<meta charset="UTF-8">
+<title>آموزش واحدهای CSS</title>
+
+<style>
+
+/* =========================
+   تنظیمات کلی صفحه
+========================= */
+
+body {
+    font-family: sans-serif;
+    direction: rtl;
+    line-height: 1.8;
+    margin: 0;
+    padding: 20px;
+    background: #f5f5f5;
+}
+
+section {
+    background: white;
+    padding: 20px;
+    margin-bottom: 30px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.05);
+}
+
+h2 {
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 5px;
+}
+
+/* =========================
+   1️⃣ px (پیکسل - واحد ثابت)
+========================= */
+
+.px-box {
+    width: 200px;
+    height: 100px;
+    background: #ffb3b3;
+    margin-top: 10px;
+}
+
+.px-text {
+    font-size: 24px;
+}
+
+/* =========================
+   2️⃣ em (وابسته به والد)
+========================= */
+
+.em-parent {
+    font-size: 20px;
+}
+
+.em-child {
+    font-size: 2em; /* 2 × 20px = 40px */
+    background: #b3ffd9;
+    padding: 1em;
+}
+
+/* =========================
+   3️⃣ rem (وابسته به root)
+========================= */
+
+html {
+    font-size: 16px;
+}
+
+.rem-box {
+    font-size: 2rem; /* 2 × 16px = 32px */
+    padding: 1rem;
+    background: #b3d9ff;
+}
+
+/* =========================
+   4️⃣ % (درصدی - نسبی)
+========================= */
+
+.percent-parent {
+    width: 400px;
+    background: #eee;
+    padding: 10px;
+}
+
+.percent-child {
+    width: 50%;
+    height: 50px;
+    background: #ffd9b3;
+}
+
+/* =========================
+   5️⃣ vh (ارتفاع صفحه)
+========================= */
+
+.vh-box {
+    height: 20vh;
+    background: #d9b3ff;
+    margin-top: 10px;
+}
+
+/* =========================
+   6️⃣ vw (عرض صفحه)
+========================= */
+
+.vw-box {
+    width: 50vw;
+    height: 50px;
+    background: #c2f0c2;
+    margin-top: 10px;
+}
+
+</style>
+</head>
+
+<body>
+
+<h1>آموزش کامل واحدهای CSS</h1>
+
+<!-- ================= px ================= -->
+<section>
+<h2>1️⃣ واحد px</h2>
+<p>px یک واحد ثابت است و به اندازه دقیق پیکسل وابسته است.</p>
+
+<h3>مثال‌ها:</h3>
+<ul>
+<li>width: 200px</li>
+<li>font-size: 24px</li>
+<li>margin: 10px</li>
+</ul>
+
+<div class="px-box"></div>
+<p class="px-text">این متن 24px است</p>
+</section>
+
+
+<!-- ================= em ================= -->
+<section>
+<h2>2️⃣ واحد em</h2>
+<p>em نسبت به اندازه فونت والد محاسبه می‌شود.</p>
+
+<h3>مثال‌ها:</h3>
+<ul>
+<li>font-size: 2em</li>
+<li>padding: 1em</li>
+<li>margin: 0.5em</li>
+</ul>
+
+<div class="em-parent">
+    والد با فونت 20px
+    <div class="em-child">
+        این متن 2em است (یعنی 40px)
+    </div>
+</div>
+</section>
+
+
+<!-- ================= rem ================= -->
+<section>
+<h2>3️⃣ واحد rem</h2>
+<p>rem نسبت به اندازه فونت root (html) محاسبه می‌شود.</p>
+
+<h3>مثال‌ها:</h3>
+<ul>
+<li>font-size: 2rem</li>
+<li>padding: 1rem</li>
+<li>margin: 1.5rem</li>
+</ul>
+
+<div class="rem-box">
+    این متن 2rem است (32px)
+</div>
+</section>
+
+
+<!-- ================= % ================= -->
+<section>
+<h2>4️⃣ واحد %</h2>
+<p>درصد نسبت به اندازه عنصر والد محاسبه می‌شود.</p>
+
+<h3>مثال‌ها:</h3>
+<ul>
+<li>width: 50%</li>
+<li>height: 100%</li>
+<li>margin: 10%</li>
+</ul>
+
+<div class="percent-parent">
+    عرض والد 400px است
+    <div class="percent-child"></div>
+</div>
+</section>
+
+
+<!-- ================= vh ================= -->
+<section>
+<h2>5️⃣ واحد vh</h2>
+<p>vh برابر با درصدی از ارتفاع صفحه نمایش است.</p>
+
+<h3>مثال‌ها:</h3>
+<ul>
+<li>height: 100vh</li>
+<li>height: 50vh</li>
+<li>margin-top: 10vh</li>
+</ul>
+
+<div class="vh-box">
+    این باکس 20vh ارتفاع دارد
+</div>
+</section>
+
+
+<!-- ================= vw ================= -->
+<section>
+<h2>6️⃣ واحد vw</h2>
+<p>vw برابر با درصدی از عرض صفحه نمایش است.</p>
+
+<h3>مثال‌ها:</h3>
+<ul>
+<li>width: 100vw</li>
+<li>width: 50vw</li>
+<li>font-size: 5vw</li>
+</ul>
+
+<div class="vw-box">
+    عرض این باکس 50vw است
+</div>
+</section>
+
+</body>
+</html>

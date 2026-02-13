@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+<meta charset="UTF-8">
+<title>آموزش انواع رنگ در CSS</title>
+
+<style>
+
+/* تنظیمات کلی صفحه */
+body {
+    font-family: sans-serif;
+    direction: rtl;
+    padding: 20px;
+    background: #f5f5f5;
+    line-height: 1.8;
+}
+
+section {
+    background: white;
+    padding: 20px;
+    margin-bottom: 30px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.05);
+}
+
+h2 {
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 5px;
+}
+
+/* ================= RGB ================= */
+
+.rgb-box1 { background: rgb(255, 0, 0); }
+.rgb-box2 { background: rgb(0, 128, 0); }
+.rgb-box3 { background: rgb(0, 0, 255); }
+
+/* ================= RGBA ================= */
+
+.rgba-box1 { background: rgba(255, 0, 0, 0.5); }
+.rgba-box2 { background: rgba(0, 128, 0, 0.3); }
+.rgba-box3 { background: rgba(0, 0, 255, 0.7); }
+
+/* ================= HEX ================= */
+
+.hex-box1 { background: #ff0000; }
+.hex-box2 { background: #00ff00; }
+.hex-box3 { background: #0000ff; }
+
+/* ================= HSL (جایگزین HSB در CSS) ================= */
+
+.hsl-box1 { background: hsl(0, 100%, 50%); }
+.hsl-box2 { background: hsl(120, 100%, 40%); }
+.hsl-box3 { background: hsl(240, 100%, 50%); }
+
+/* ================= رنگ‌های از پیش تعریف شده ================= */
+
+.named-box1 { background: red; }
+.named-box2 { background: green; }
+.named-box3 { background: royalblue; }
+
+/* استایل مشترک برای باکس‌ها */
+
+.color-box {
+    width: 150px;
+    height: 70px;
+    margin: 10px 0;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+}
+
+</style>
+</head>
+
+<body>
+
+<h1>آموزش کامل انواع رنگ در CSS</h1>
+
+<!-- ================= RGB ================= -->
+<section>
+<h2>1️⃣ RGB</h2>
+<p>rgb مخفف Red, Green, Blue است. مقدار هر رنگ بین 0 تا 255 می‌باشد.</p>
+
+<ul>
+<li>rgb(255, 0, 0) → قرمز</li>
+<li>rgb(0, 255, 0) → سبز</li>
+<li>rgb(0, 0, 255) → آبی</li>
+</ul>
+
+<div class="color-box rgb-box1">rgb(255,0,0)</div>
+<div class="color-box rgb-box2">rgb(0,128,0)</div>
+<div class="color-box rgb-box3">rgb(0,0,255)</div>
+</section>
+
+
+<!-- ================= RGBA ================= -->
+<section>
+<h2>2️⃣ RGBA</h2>
+<p>مشابه rgb است ولی دارای alpha برای شفافیت (0 تا 1) می‌باشد.</p>
+
+<ul>
+<li>rgba(255,0,0,0.5)</li>
+<li>rgba(0,128,0,0.3)</li>
+<li>rgba(0,0,255,0.7)</li>
+</ul>
+
+<div class="color-box rgba-box1">شفاف 0.5</div>
+<div class="color-box rgba-box2">شفاف 0.3</div>
+<div class="color-box rgba-box3">شفاف 0.7</div>
+</section>
+
+
+<!-- ================= HEX ================= -->
+<section>
+<h2>3️⃣ HEX</h2>
+<p>کد هگزادسیمال با # شروع می‌شود و شامل 6 کاراکتر است.</p>
+
+<ul>
+<li>#ff0000 → قرمز</li>
+<li>#00ff00 → سبز</li>
+<li>#0000ff → آبی</li>
+</ul>
+
+<div class="color-box hex-box1">#ff0000</div>
+<div class="color-box hex-box2">#00ff00</div>
+<div class="color-box hex-box3">#0000ff</div>
+</section>
+
+
+<!-- ================= HSB / HSL ================= -->
+<section>
+<h2>4️⃣ HSB (در CSS با HSL)</h2>
+<p>
+در CSS مستقیماً HSB وجود ندارد و از HSL استفاده می‌شود.
+</p>
+
+<ul>
+<li>Hue → رنگ (0 تا 360 درجه)</li>
+<li>Saturation → درصد خلوص رنگ</li>
+<li>Lightness → درصد روشنایی</li>
+</ul>
+
+<ul>
+<li>hsl(0,100%,50%)</li>
+<li>hsl(120,100%,40%)</li>
+<li>hsl(240,100%,50%)</li>
+</ul>
+
+<div class="color-box hsl-box1">hsl قرمز</div>
+<div class="color-box hsl-box2">hsl سبز</div>
+<div class="color-box hsl-box3">hsl آبی</div>
+</section>
+
+
+<!-- ================= Named Colors ================= -->
+<section>
+<h2>5️⃣ رنگ‌های از پیش تعریف شده</h2>
+<p>CSS بیش از 140 رنگ از پیش تعریف شده دارد.</p>
+
+<ul>
+<li>red</li>
+<li>green</li>
+<li>royalblue</li>
+<li>gold</li>
+<li>black</li>
+</ul>
+
+<div class="color-box named-box1">red</div>
+<div class="color-box named-box2">green</div>
+<div class="color-box named-box3">royalblue</div>
+</section>
+
+</body>
+</html>
