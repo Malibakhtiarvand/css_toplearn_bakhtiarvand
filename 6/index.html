@@ -166,8 +166,6 @@
         <div class="code-block">
             <span class="property">flex-direction</span>: <span class="value">row</span>;        <span class="comment">/* پیش‌فرض: چپ به راست */</span><br>
             <span class="property">flex-direction</span>: <span class="value">column</span>;     <span class="comment">/* عمودی */</span><br>
-            <span class="property">flex-direction</span>: <span class="value">row-reverse</span>; <span class="comment">/* برعکس افقی */</span><br>
-            <span class="property">flex-direction</span>: <span class="value">column-reverse</span>;<span class="comment">/* برعکس عمودی */</span>
         </div>
         <div class="demo-container">
             <div class="example-label">⭐ row (افقی - پیش‌فرض)</div>
@@ -187,8 +185,6 @@
         <!-- ۵. justify-content -->
         <h3>🎯 ۵. justify-content (تراز افقی)</h3>
         <div class="code-block">
-            <span class="property">justify-content</span>: <span class="value">flex-start</span>;   <span class="comment">/* چپ */</span><br>
-            <span class="property">justify-content</span>: <span class="value">flex-end</span>;     <span class="comment">/* راست */</span><br>
             <span class="property">justify-content</span>: <span class="value">center</span>;        <span class="comment">/* وسط */</span><br>
             <span class="property">justify-content</span>: <span class="value">space-between</span>; <span class="comment">/* فاصله بین */</span><br>
             <span class="property">justify-content</span>: <span class="value">space-around</span>;  <span class="comment">/* فاصله اطراف */</span><br>
@@ -212,9 +208,6 @@
         <!-- ۶. align-items -->
         <h3>📐 ۶. align-items (تراز عمودی)</h3>
         <div class="code-block">
-            <span class="property">align-items</span>: <span class="value">stretch</span>;     <span class="comment">/* کشیده شود (پیش‌فرض) */</span><br>
-            <span class="property">align-items</span>: <span class="value">flex-start</span>;  <span class="comment">/* بالا */</span><br>
-            <span class="property">align-items</span>: <span class="value">flex-end</span>;    <span class="comment">/* پایین */</span><br>
             <span class="property">align-items</span>: <span class="value">center</span>;       <span class="comment">/* وسط */</span>
         </div>
         <div class="demo-container">
@@ -224,40 +217,6 @@
                 <div class="flex-item-demo" style="padding: 28px;">بزرگ</div>
                 <div class="flex-item-demo" style="padding: 16px;">متوسط</div>
             </div>
-            <div class="example-label">flex-start (بالا)</div>
-            <div class="flex-container-demo" style="display: flex; align-items: flex-start; height: 120px;">
-                <div class="flex-item-demo" style="padding: 8px;">۱</div>
-                <div class="flex-item-demo" style="padding: 25px;">۲</div>
-                <div class="flex-item-demo" style="padding: 15px;">۳</div>
-            </div>
-        </div>
-
-        <!-- ۷. gap -->
-        <h3>🕳 ۷. gap (فاصله بین آیتم‌ها)</h3>
-        <div class="code-block">
-            <span class="property">gap</span>: <span class="value">20px</span>;    <span class="comment">/* فاصله بین همه آیتم‌ها */</span><br>
-            <span class="property">row-gap</span>: <span class="value">10px</span>;  <span class="comment">/* فقط فاصله سطری */</span><br>
-            <span class="property">column-gap</span>: <span class="value">15px</span>; <span class="comment">/* فقط فاصله ستونی */</span>
-        </div>
-        <div class="demo-container">
-            <div class="example-label">gap: 30px;</div>
-            <div class="flex-container-demo" style="display: flex; gap: 30px;">
-                <div class="flex-item-demo">آیتم ۱</div>
-                <div class="flex-item-demo">آیتم ۲</div>
-                <div class="flex-item-demo">آیتم ۳</div>
-            </div>
-            <div class="example-label">بدون gap (فاصله پیش‌فرض margin وجود دارد)</div>
-            <div class="flex-container-demo" style="display: flex;">
-                <div class="flex-item-demo">۱</div>
-                <div class="flex-item-demo">۲</div>
-                <div class="flex-item-demo">۳</div>
-            </div>
-            <p style="font-size: 0.9em;">✅ توجه: margin آیتم‌ها در دمو حذف نشده، ولی gap اضافه بر margin عمل می‌کند.</p>
-        </div>
-
-        <div class="note">
-            ⏳ جلسه اول جمع‌بندی: <strong>display: flex</strong> => کانتینر می‌شود. <strong>flex-direction</strong> جهت را عوض می‌کند. <strong>justify-content</strong> افقی/عمودی (با توجه به direction) تراز می‌کند. <strong>align-items</strong> تراز عمودی/متقاطع را تنظیم می‌کند. <strong>gap</strong> فاصله بین آیتم‌ها.  
-            🎯 جلسه دوم: سراغ آیتم‌ها می‌رویم و ویژگی‌های flex-grow و flex-basis.
         </div>
 
         <p style="text-align: left; color: #3a6b8a;">✨ پایان جلسه اول - Flexbox مقدماتی</p>
