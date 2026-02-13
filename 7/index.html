@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>جلسه ۲: ویژگی‌های Flex Items - grow و basis</title>
+    <style>
+        /* استایل مشابه جلسه اول با تغییر رنگ‌های ملایم برای تنوع */
+        body {
+            font-family: 'Segoe UI', Roboto, sans-serif;
+            background: #f8f1e5;
+            margin: 0;
+            padding: 30px 20px;
+            color: #2e3b4e;
+            line-height: 1.6;
+            direction: rtl;
+        }
+        .lesson-box {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        h1 {
+            color: #7a4d3a;
+            border-right: 8px solid #e5989b;
+            padding-right: 20px;
+            font-size: 2.2em;
+        }
+        h2 {
+            color: #5f4a3a;
+            border-bottom: 3px dotted #b5838d;
+            padding-bottom: 8px;
+        }
+        h3 {
+            color: #6d4c4c;
+        }
+        .code-block {
+            background: #1e2a2f;
+            padding: 18px;
+            border-radius: 20px;
+            box-shadow: 0 8px 18px #00000030;
+            margin: 20px 0;
+            color: #f2e9e4;
+            direction: ltr;
+            text-align: left;
+            font-family: 'Courier New', monospace;
+            border-left: 7px solid #c9ada7;
+        }
+        .code-block span.keyword { color: #ffb4a2; }
+        .code-block span.property { color: #a2d6f9; }
+        .code-block span.value { color: #f9e79f; }
+        .code-block span.comment { color: #b0d0b0; }
+        .code-block span.selector { color: #fbc4ab; }
+
+        .demo-container {
+            background: #fffcf7;
+            border-radius: 28px;
+            padding: 25px;
+            box-shadow: 0 15px 30px #d9c5b3;
+            margin: 35px 0;
+            border: 1px solid #eed7c5;
+        }
+        .flex-container-demo {
+            background: #4e3d42;
+            padding: 15px;
+            border-radius: 20px;
+            margin: 20px 0;
+            display: flex;  /* فلکس فعال */
+        }
+        .flex-item-demo {
+            background: linear-gradient(145deg, #fad0c4, #fbc4c0);
+            border-radius: 16px;
+            padding: 18px 22px;
+            margin: 6px;
+            text-align: center;
+            font-weight: bold;
+            color: #2f2a2e;
+            box-shadow: 0 6px 0 #c18d7a;
+            font-size: 1.2em;
+            border: 1px solid #edb5a0;
+        }
+        .note {
+            background: #fbeae9;
+            border-right: 7px solid #bc6c6c;
+            padding: 16px 22px;
+            border-radius: 18px;
+            color: #4b3a3a;
+        }
+        .example-label {
+            background: #846b62;
+            color: white;
+            padding: 4px 22px;
+            border-radius: 50px;
+            display: inline-block;
+            margin-bottom: 12px;
+        }
+        hr {
+            border: none;
+            height: 2px;
+            background: linear-gradient(to left, #cbb2a5, transparent);
+        }
+        .comparison {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+    </style>
+</head>
+<body>
+    <div class="lesson-box">
+        <h1>🧱 جلسه ۲: ویژگی‌های Flex Items (آیتم‌ها)</h1>
+        <p style="font-size: 1.25em; color: #6f584b;">این جلسه روی فرزندان کانتینر فلکس تمرکز داریم: <strong>flex-grow</strong> و <strong>flex-basis</strong>. (پیش‌نیاز: جلسه اول)</p>
+
+        <!-- مرور سریع جلسه قبل (۱ دقیقه) -->
+        <div class="note" style="background: #ffe6d5;">
+            ⏪ مرور سریع: کانتینر فلکس با display: flex فعال می‌شه. justify-content برای تراز افقی و align-items برای عمودی. gap فاصله میده. حالا نوبت تنظیمات خود آیتم‌هاست.
+        </div>
+
+        <h2>🔧 ۱. flex-basis (اندازه پایه)</h2>
+        <p>مشخص می‌کند که آیتم قبل از کشیده شدن یا جمع شدن چه عرض/ارتفاع اولیه‌ای داشته باشد. (جایگزین width/height در جهت اصلی)</p>
+        <div class="code-block">
+            <span class="selector">.item</span> {<br>
+            &nbsp;&nbsp;<span class="property">flex-basis</span>: <span class="value">100px</span>;  <span class="comment">/* عرض اولیه ۱۰۰ پیکسل در flex-direction: row */</span><br>
+            &nbsp;&nbsp;<span class="property">flex-basis</span>: <span class="value">25%</span>;    <span class="comment">/* ۲۵ درصد کانتینر */</span><br>
+            &nbsp;&nbsp;<span class="property">flex-basis</span>: <span class="value">auto</span>;    <span class="comment">/* پیش‌فرض: بر اساس محتوا */</span><br>
+            }
+        </div>
+        <div class="demo-container">
+            <div class="example-label">✅ flex-basis: 80px روی آیتم وسط</div>
+            <div style="display: flex; background: #4e3d42; padding: 15px; border-radius: 20px;">
+                <div style="background: #fad0c4; border-radius: 16px; padding: 16px; margin: 6px; box-shadow: 0 4px 0 #b18a7a;">۱</div>
+                <div style="background: #fbc4c0; border-radius: 16px; padding: 16px; margin: 6px; box-shadow: 0 4px 0 #b18a7a; flex-basis: 80px;">۲ (basis 80px)</div>
+                <div style="background: #fad0c4; border-radius: 16px; padding: 16px; margin: 6px; box-shadow: 0 4px 0 #b18a7a;">۳</div>
+            </div>
+            <p>آیتم وسط دقیقاً ۸۰px عرض گرفته (اگر فضا اجازه دهد).</p>
+        </div>
+
+        <h2>📈 ۲. flex-grow (رشد کردن)</h2>
+        <p>تعیین می‌کند که آیتم چقدر از فضای خالی باقی‌مانده را جذب کند. پیش‌فرض: ۰ (رشد نمی‌کند).</p>
+        <div class="code-block">
+            <span class="property">flex-grow</span>: <span class="value">0</span>; <span class="comment">/* پیش‌فرض: رشد نمی‌کنه */</span><br>
+            <span class="property">flex-grow</span>: <span class="value">1</span>; <span class="comment">/* به اندازه دیگران رشد می‌کنه (سهم برابر) */</span><br>
+            <span class="property">flex-grow</span>: <span class="value">2</span>; <span class="comment">/* دو برابر بقیه فضا می‌گیره */</span>
+        </div>
+
+        <div class="demo-container">
+            <div class="example-label">📊 flex-grow: 1 به همه</div>
+            <div style="display: flex; background: #4e3d42; padding: 15px; border-radius: 20px;">
+                <div style="background: #fbc4c0; border-radius: 16px; padding: 16px; margin: 6px; box-shadow: 0 4px 0 #b18a7a; flex-grow: 1;">۱ (grow:1)</div>
+                <div style="background: #fbc4c0; border-radius: 16px; padding: 16px; margin: 6px; box-shadow: 0 4px 0 #b18a7a; flex-grow: 1;">۲ (grow:1)</div>
+                <div style="background: #fbc4c0; border-radius: 16px; padding: 16px; margin: 6px; box-shadow: 0 4px 0 #b18a7a; flex-grow: 1;">۳ (grow:1)</div>
+            </div>
+            <p style="margin-top: 12px;">✨ همه به یک اندازه فضا را پر می‌کنند.</p>
+
+            <div class="example-label" style="background: #aa6f5e;">📊 flex-grow: 1 , 0 , 2</div>
+            <div style="display: flex; background: #4e3d42; padding: 15px; border-radius: 20px;">
+                <div style="background: #fad0c4; border-radius: 16px; padding: 16px; margin: 6px; box-shadow: 0 4px 0 #b18a7a; flex-grow: 1;">۱ (grow:1)</div>
+                <div style="background: #eec1ba; border-radius: 16px; padding: 16px; margin: 6px; box-shadow: 0 4px 0 #b18a7a; flex-grow: 0;">۲ (grow:0)</div>
+                <div style="background: #fad0c4; border-radius: 16px; padding: 16px; margin: 6px; box-shadow: 0 4px 0 #b18a7a; flex-grow: 2;">۳ (grow:2)</div>
+            </div>
+            <p>🔸 آیتم ۲ رشد نکرده. آیتم ۳ دو برابر آیتم ۱ فضا گرفته.</p>
+        </div>
+
+        <div style="background: #2f3e46; color: white; border-radius: 40px; padding: 25px; text-align: center;">
+            ⭐ با این دو جلسه می‌توانید بسیاری از چیدمان‌های ساده را با Flexbox طراحی کنید. ممنون از همراهی‌تان ⭐
+        </div>
+        <p style="text-align: left; margin-top: 20px; color: #7f6b5e;">✏️ پایان جلسه دوم - تمرین: کدها را تغییر دهید و نتیجه را ببینید.</p>
+    </div>
+</body>
+</html>
