@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>آموزش مقدماتی CSS Grid | ترازبندی گام به گام</title>
+    <style>
+        /* استایل کلی صفحه */
+        body {
+            font-family: Vazir, Tahoma, Arial, sans-serif;
+            background: #f0f2f5;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        h1 {
+            text-align: center;
+            color: #0b5e7c;
+            margin-bottom: 30px;
+        }
+        h2 {
+            background: #2c3e50;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 8px;
+            margin-top: 40px;
+            font-size: 1.3rem;
+        }
+        h3 {
+            color: #16a085;
+            margin: 25px 0 15px;
+            border-right: 5px solid #16a085;
+            padding-right: 10px;
+            font-size: 1.2rem;
+        }
+        h4 {
+            color: #e67e22;
+            margin: 20px 0 10px;
+            font-size: 1.1rem;
+        }
+        .note {
+            background: #fffacd;
+            border-right: 5px solid #ffa500;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+        .code {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 12px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            direction: ltr;
+            text-align: left;
+            margin: 15px 0;
+            overflow-x: auto;
+        }
+        
+        /* استایل گریدها */
+        .grid-demo {
+            background: #bdc3c7;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            position: relative;
+        }
+        
+        .grid-demo::before {
+            content: "کانتینر";
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            background: #34495e;
+            color: white;
+            padding: 2px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+        
+        .grid-item {
+            background: #3498db;
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: bold;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .grid-item.small {
+            padding: 10px;
+            font-size: 1rem;
+        }
+        
+        /* گرید پایه برای همه مثال‌ها */
+        .base-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 100px);
+            grid-template-rows: repeat(2, 80px);
+            gap: 10px;
+            background: #ecf0f1;
+            padding: 20px;
+            border: 3px dashed #7f8c8d;
+            height: 300px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        /* ========== مثال‌های ترازبندی ========== */
+        
+        /* 1. justify-content (تراز افقی کل گرید) */
+        .jc-start {
+            justify-content: start;
+        }
+        .jc-center {
+            justify-content: center;
+        }
+        .jc-end {
+            justify-content: end;
+        }
+        .jc-stretch {
+            justify-content: stretch;
+            grid-template-columns: repeat(3, auto);
+        }
+        .jc-space-around {
+            justify-content: space-around;
+        }
+        .jc-space-between {
+            justify-content: space-between;
+        }
+        .jc-space-evenly {
+            justify-content: space-evenly;
+        }
+        
+        /* 2. align-content (تراز عمودی کل گرید) */
+        .ac-start {
+            align-content: start;
+        }
+        .ac-center {
+            align-content: center;
+        }
+        .ac-end {
+            align-content: end;
+        }
+        .ac-stretch {
+            /* align-content: stretch; */
+            grid-template-rows: repeat(2, auto);
+        }
+        .ac-space-around {
+            align-content: space-around;
+        }
+        .ac-space-between {
+            align-content: space-between;
+        }
+        .ac-space-evenly {
+            align-content: space-evenly;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📐 آموزش ترازبندی (Alignment) در CSS Grid</h1>
+        
+        <div class="note">
+            <strong>🎯 هدف این جلسه:</strong> یادگیری کامل ترازبندی در Grid با مقادیر center, stretch, space-around, space-between
+        </div>
+
+        <!-- ======================== بخش 1: justify-content ======================== -->
+        <h2>📌 بخش 1: justify-content (تراز افقی کل گرید)</h2>
+        <p>این خاصیت، کل گرید را در کانتینر به صورت افقی تراز می‌کند.</p>
+
+        <h3>✅ مثال 1: justify-content: center</h3>
+        <div class="code">
+            justify-content: center;
+        </div>
+        <div class="grid-demo">
+            <div class="base-grid jc-center">
+                <div class="grid-item">1</div>
+                <div class="grid-item">2</div>
+                <div class="grid-item">3</div>
+                <div class="grid-item">4</div>
+                <div class="grid-item">5</div>
+                <div class="grid-item">6</div>
+            </div>
+        </div>
+        <p>⭐ کل گرید در وسط کانتینر قرار می‌گیرد.</p>
+
+        <h3>✅ مثال 2: justify-content: stretch</h3>
+        <div class="code">
+            justify-content: stretch;<br>
+            grid-template-columns: repeat(3, auto);  /* auto به جای fr */
+        </div>
+        <div class="grid-demo">
+            <div class="base-grid jc-stretch">
+                <div class="grid-item">1</div>
+                <div class="grid-item">2</div>
+                <div class="grid-item">3</div>
+                <div class="grid-item">4</div>
+                <div class="grid-item">5</div>
+                <div class="grid-item">6</div>
+            </div>
+        </div>
+        <p>⭐ ستون‌ها کش می‌آیند تا تمام عرض کانتینر را پر کنند.</p>
+
+        <h3>✅ مثال 3: justify-content: space-around</h3>
+        <div class="code">
+            justify-content: space-around;
+        </div>
+        <div class="grid-demo">
+            <div class="base-grid jc-space-around">
+                <div class="grid-item">1</div>
+                <div class="grid-item">2</div>
+                <div class="grid-item">3</div>
+                <div class="grid-item">4</div>
+                <div class="grid-item">5</div>
+                <div class="grid-item">6</div>
+            </div>
+        </div>
+        <p>⭐ فاصله در اطراف هر ستون برابر است (فاصله‌ها دو برابر می‌شوند).</p>
+
+        <h3>✅ مثال 4: justify-content: space-between</h3>
+        <div class="code">
+            justify-content: space-between;
+        </div>
+        <div class="grid-demo">
+            <div class="base-grid jc-space-between">
+                <div class="grid-item">1</div>
+                <div class="grid-item">2</div>
+                <div class="grid-item">3</div>
+                <div class="grid-item">4</div>
+                <div class="grid-item">5</div>
+                <div class="grid-item">6</div>
+            </div>
+        </div>
+        <p>⭐ اولین ستون به چپ، آخرین ستون به راست، بقیه فاصله بینشان برابر.</p>
+
+        <!-- ======================== بخش 2: align-content ======================== -->
+        <h2>📌 بخش 2: align-content (تراز عمودی کل گرید)</h2>
+        <p>این خاصیت، کل گرید را در کانتینر به صورت عمودی تراز می‌کند.</p>
+
+        <h3>✅ مثال 5: align-content: center</h3>
+        <div class="code">
+            align-content: center;
+        </div>
+        <div class="grid-demo">
+            <div class="base-grid ac-center">
+                <div class="grid-item">1</div>
+                <div class="grid-item">2</div>
+                <div class="grid-item">3</div>
+                <div class="grid-item">4</div>
+                <div class="grid-item">5</div>
+                <div class="grid-item">6</div>
+            </div>
+        </div>
+        <p>⭐ کل گرید در وسط کانتینر (عمودی) قرار می‌گیرد.</p>
+
+        <h3>✅ مثال 6: align-content: stretch</h3>
+        <div class="code">
+            align-content: stretch;<br>
+            grid-template-rows: repeat(2, auto);  /* auto به جای ارتفاع ثابت */
+        </div>
+        <div class="grid-demo">
+            <div class="base-grid ac-stretch">
+                <div class="grid-item">1</div>
+                <div class="grid-item">2</div>
+                <div class="grid-item">3</div>
+                <div class="grid-item">4</div>
+                <div class="grid-item">5</div>
+                <div class="grid-item">6</div>
+            </div>
+        </div>
+        <p>⭐ سطرها کش می‌آیند تا تمام ارتفاع کانتینر را پر کنند.</p>
+
+        <h3>✅ مثال 7: align-content: space-around</h3>
+        <div class="code">
+            align-content: space-around;
+        </div>
+        <div class="grid-demo">
+            <div class="base-grid ac-space-around">
+                <div class="grid-item">1</div>
+                <div class="grid-item">2</div>
+                <div class="grid-item">3</div>
+                <div class="grid-item">4</div>
+                <div class="grid-item">5</div>
+                <div class="grid-item">6</div>
+            </div>
+        </div>
+        <p>⭐ فاصله در بالا و پایین هر سطر برابر است.</p>
+
+        <h3>✅ مثال 8: align-content: space-between</h3>
+        <div class="code">
+            align-content: space-between;
+        </div>
+        <div class="grid-demo">
+            <div class="base-grid ac-space-between">
+                <div class="grid-item">1</div>
+                <div class="grid-item">2</div>
+                <div class="grid-item">3</div>
+                <div class="grid-item">4</div>
+                <div class="grid-item">5</div>
+                <div class="grid-item">6</div>
+            </div>
+        </div>
+        <p>⭐ سطر اول به بالا، سطر آخر به پایین، بقیه فاصله بینشان برابر.</p>
+    </div>
+</body>
+</html>

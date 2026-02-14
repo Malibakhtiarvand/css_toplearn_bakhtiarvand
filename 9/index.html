@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>آموزش مقدماتی CSS Grid | مفاهیم پایه</title>
+    <style>
+        /* استایل کلی صفحه */
+        body {
+            font-family: Vazir, Tahoma, Arial, sans-serif;
+            background: #f0f2f5;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        h1 {
+            text-align: center;
+            color: #0b5e7c;
+            margin-bottom: 30px;
+        }
+        h2 {
+            background: #2c3e50;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 8px;
+            margin-top: 40px;
+            font-size: 1.3rem;
+        }
+        h3 {
+            color: #16a085;
+            margin: 20px 0 10px;
+            border-right: 5px solid #16a085;
+            padding-right: 10px;
+        }
+        .note {
+            background: #fffacd;
+            border-right: 5px solid #ffa500;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+        .code {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 12px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            direction: ltr;
+            text-align: left;
+            margin: 15px 0;
+            overflow-x: auto;
+        }
+        
+        /* استایل گریدها */
+        .grid-demo {
+            background: #bdc3c7;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        
+        .grid-item {
+            background: #3498db;
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: bold;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.2s;
+        }
+        
+        .grid-item:hover {
+            transform: scale(1.02);
+            background: #2980b9;
+        }
+        
+        .grid-item.special {
+            background: #e67e22;
+        }
+        
+        .grid-item.highlight {
+            background: #2ecc71;
+        }
+
+        /* ========== مثال‌های گرید ========== */
+        
+        /* 1. گرید ساده - 3 ستون */
+        .grid-1 {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 15px;
+        }
+        
+        /* 2. ترکیب واحدها */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 200px 1fr 2fr;
+            gap: 15px;
+        }
+        
+        /* 3. با repeat */
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+        }
+                
+        /* 4. تعیین ارتفاع سطرها */
+        .grid-4 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: 100px 200px;
+            gap: 15px;
+        }
+        
+        /* 5. جاگذاری آیتم‌ها با line numbers */
+        .grid-5 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(3, 100px);
+            gap: 15px;
+        }
+        
+        .item-1 { grid-column: 1 / 3; grid-row: 1 / 2; background: #e74c3c; }
+        .item-2 { grid-column: 3 / 4; grid-row: 1 / 3; background: #f39c12; }
+        .item-3 { grid-column: 1 / 2; grid-row: 2 / 4; background: #27ae60; }
+        .item-4 { grid-column: 2 / 4; grid-row: 3 / 4; background: #9b59b6; }
+        
+        /* 6. align و justify */
+        .grid-6 {
+            display: grid;
+            grid-template-columns: repeat(3, 100px);
+            grid-template-rows: repeat(2, 100px);
+            gap: 15px;
+            height: 350px;
+            background: #95a5a6;
+            justify-content: center;
+            align-content: center;
+        }
+        
+        .grid-6 .grid-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .start-self { align-self: start; justify-self: start; background: #e67e22; }
+        .center-self { align-self: center; justify-self: center; background: #27ae60; }
+        .end-self { align-self: end; justify-self: end; background: #e74c3c; }
+        .stretch-self { align-self: stretch; justify-self: stretch; background: #8e44ad; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📐 آموزش مقدماتی CSS Grid</h1>
+        
+        <div class="note">
+            <strong>🎯 هدف:</strong> این فایل مفاهیم پایه‌ای و ضروری Grid را شامل می‌شود.
+        </div>
+
+        <!-- ======================== بخش 1: مفاهیم پایه ======================== -->
+        <h2>📌 بخش 1: مفاهیم پایه</h2>
+        
+        <h3>✅ مثال 1: ساده‌ترین گرید - سه ستون مساوی</h3>
+        <div class="code">
+            display: grid;<br>
+            grid-template-columns: 1fr 1fr 1fr;<br>
+            gap: 15px;
+        </div>
+        <div class="grid-demo">
+            <div class="grid-1">
+                <div class="grid-item">1</div>
+                <div class="grid-item">2</div>
+                <div class="grid-item">3</div>
+                <div class="grid-item">4</div>
+                <div class="grid-item">5</div>
+                <div class="grid-item">6</div>
+            </div>
+        </div>
+        <p>⭐ <strong>واحد fr:</strong> فضای باقیمانده را به نسبت تقسیم می‌کند. اینجا هر ستون ۱ قسمت از ۳ قسمت را می‌گیرد.</p>
+
+        <h3>✅ مثال 2: ترکیب واحدهای مختلف</h3>
+        <div class="code">
+            grid-template-columns: 200px 1fr 2fr;
+        </div>
+        <div class="grid-demo">
+            <div class="grid-2">
+                <div class="grid-item">200px ثابت</div>
+                <div class="grid-item">1fr (1 قسمت)</div>
+                <div class="grid-item">2fr (2 قسمت)</div>
+            </div>
+        </div>
+        <p>⭐ ستون اول 200px، ستون دوم 1 قسمت و ستون سوم 2 قسمت از فضای باقیمانده.</p>
+
+        <h3>✅ مثال 3: تابع repeat()</h3>
+        <div class="code">
+            grid-template-columns: repeat(4, 1fr);
+        </div>
+        <div class="grid-demo">
+            <div class="grid-3">
+                <div class="grid-item">1</div>
+                <div class="grid-item">2</div>
+                <div class="grid-item">3</div>
+                <div class="grid-item">4</div>
+                <div class="grid-item">5</div>
+                <div class="grid-item">6</div>
+                <div class="grid-item">7</div>
+                <div class="grid-item">8</div>
+            </div>
+        </div>
+        <p>⭐ <strong>repeat(4, 1fr)</strong> یعنی ۴ تا ستون 1fr.</p>
+
+        <!-- ======================== بخش 2: سطرها ======================== -->
+        <h2>📌 بخش 2: کنترل سطرها (rows)</h2>
+
+        <h3>✅ مثال 4: تعیین ارتفاع سطرها</h3>
+        <div class="code">
+            grid-template-rows: 100px 200px;
+        </div>
+        <div class="grid-demo">
+            <div class="grid-4">
+                <div class="grid-item">سطر 1 - 100px</div>
+                <div class="grid-item">سطر 1 - 100px</div>
+                <div class="grid-item">سطر 1 - 100px</div>
+                <div class="grid-item">سطر 2 - 200px</div>
+                <div class="grid-item">سطر 2 - 200px</div>
+                <div class="grid-item">سطر 2 - 200px</div>
+            </div>
+        </div>
+        <p>⭐ دو سطر اول مشخص شده‌اند. بقیه بر اساس محتوا auto می‌شوند.</p>
+
+        <!-- ======================== بخش 3: جایگذاری ======================== -->
+        <h2>📌 بخش 3: جایگذاری آیتم‌ها</h2>
+
+        <h3>✅ مثال 5: با grid-column و grid-row (شماره خطوط)</h3>
+        <div class="code">
+            .item-1 { grid-column: 1 / 3; grid-row: 1 / 2; }<br>
+            .item-2 { grid-column: 3 / 4; grid-row: 1 / 3; }<br>
+            .item-3 { grid-column: 1 / 2; grid-row: 2 / 4; }<br>
+            .item-4 { grid-column: 2 / 4; grid-row: 3 / 4; }
+        </div>
+        <div class="grid-demo">
+            <div class="grid-5">
+                <div class="grid-item item-1">1 (ستون 1 تا 3، سطر 1 تا 2)</div>
+                <div class="grid-item item-2">2 (ستون 3 تا 4، سطر 1 تا 3)</div>
+                <div class="grid-item item-3">3 (ستون 1 تا 2، سطر 2 تا 4)</div>
+                <div class="grid-item item-4">4 (ستون 2 تا 4، سطر 3 تا 4)</div>
+            </div>
+        </div>
+        <p>⭐ هر آیتم را در ناحیه مشخصی قرار داده‌ایم. شماره خطوط از 1 شروع می‌شود.</p>
+    </div>
+</body>
+</html>
