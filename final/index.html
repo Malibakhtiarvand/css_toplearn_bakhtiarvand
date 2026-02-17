@@ -1,54 +1,844 @@
 <!DOCTYPE html>
-<html lang="fa">
+<html lang="fa" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>پروژه نهایی CSS</title>
-    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>استایل شیک | فروشگاه پوشاک</title>
+    <style>
+        /* ========== Reset CSS ========== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+        }
+
+        /* ========== Colors & Variables ========== */
+        :root {
+            --primary: #2a2a2a;
+            --secondary: #6b4f4f;
+            --accent: #c9a96e;
+            --light: #f9f6f2;
+            --white: #ffffff;
+            --gray: #7f7f7f;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            --transition: all 0.3s ease;
+        }
+
+        body {
+            background-color: var(--light);
+            color: var(--primary);
+            line-height: 1.6;
+        }
+
+        /* ========== Navbar با Flexbox ========== */
+        .navbar {
+            background-color: var(--white);
+            box-shadow: var(--shadow);
+            padding: 1rem 5%;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--accent);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--primary);
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-icons {
+            display: flex;
+            gap: 1.2rem;
+        }
+
+        .nav-icons svg {
+            width: 24px;
+            height: 24px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .nav-icons svg:hover {
+            transform: scale(1.1);
+            fill: var(--accent);
+        }
+
+        /* ========== Hero Section ========== */
+        .hero {
+            height: 600px;
+            background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), 
+            url('https://images.unsplash.com/photo-1469334031218-e382a71b716b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--white);
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            letter-spacing: 2px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background-color: var(--accent);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: var(--transition);
+            border: 2px solid var(--accent);
+        }
+
+        .btn:hover {
+            background-color: transparent;
+            color: var(--accent);
+        }
+
+        /* ========== Features ========== */
+        .features {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 2rem;
+            padding: 4rem 5%;
+            background-color: var(--white);
+        }
+
+        .feature-item {
+            flex: 1;
+            min-width: 200px;
+            text-align: center;
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--accent);
+        }
+
+        /* ========== Products Grid ========== */
+        .products-section {
+            padding: 5rem 5%;
+            background-color: var(--light);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .section-title p {
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .product-card {
+            background-color: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .product-image {
+            height: 350px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.1);
+        }
+
+        .product-tag {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: var(--accent);
+            color: var(--white);
+            padding: 0.3rem 1rem;
+            border-radius: 25px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .product-info {
+            padding: 1.5rem;
+        }
+
+        .product-category {
+            color: var(--gray);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-title {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .product-price {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .current-price {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--accent);
+        }
+
+        .old-price {
+            color: var(--gray);
+            text-decoration: line-through;
+            font-size: 0.9rem;
+        }
+
+        .add-to-cart {
+            width: 100%;
+            padding: 0.8rem;
+            background-color: transparent;
+            border: 2px solid var(--accent);
+            color: var(--accent);
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .add-to-cart:hover {
+            background-color: var(--accent);
+            color: var(--white);
+        }
+
+        /* ========== Categories با Flexbox ========== */
+        .categories {
+            padding: 4rem 5%;
+            background-color: var(--white);
+        }
+
+        .categories-grid {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .category-card {
+            flex: 1;
+            min-width: 200px;
+            max-width: 300px;
+            height: 300px;
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .category-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .category-card:hover img {
+            transform: scale(1.1);
+        }
+
+        .category-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.7));
+            color: var(--white);
+            padding: 2rem 1rem 1rem;
+            text-align: center;
+        }
+
+        .category-overlay h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* ========== Newsletter ========== */
+        .newsletter {
+            padding: 5rem 5%;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: var(--white);
+            text-align: center;
+        }
+
+        .newsletter-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .newsletter h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .newsletter p {
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 1rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+
+        .newsletter-form button {
+            padding: 1rem 2rem;
+            background-color: var(--accent);
+            color: var(--white);
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .newsletter-form button:hover {
+            background-color: var(--white);
+            color: var(--accent);
+        }
+
+        /* ========== Footer ========== */
+        .footer {
+            background-color: var(--primary);
+            color: var(--white);
+            padding: 3rem 5% 1rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-section h3 {
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-section a {
+            color: var(--white);
+            text-decoration: none;
+            opacity: 0.8;
+            transition: var(--transition);
+        }
+
+        .footer-section a:hover {
+            opacity: 1;
+            color: var(--accent);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background-color: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+
+        /* ========== Responsive Design ========== */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 1rem;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero {
+                height: 400px;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+            }
+
+            .features {
+                flex-direction: column;
+            }
+
+            .feature-item {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .categories-grid {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .category-card {
+                width: 100%;
+                max-width: 100%;
+            }
+        }
+    </style>
 </head>
 <body>
+    <!-- Navbar با Flexbox -->
+    <nav class="navbar">
+        <a href="#" class="logo">استایل<span>شیک</span></a>
+        
+        <ul class="nav-links">
+            <li><a href="#">خانه</a></li>
+            <li><a href="#">محصولات</a></li>
+            <li><a href="#">درباره ما</a></li>
+            <li><a href="#">تماس با ما</a></li>
+            <li><a href="#">وبلاگ</a></li>
+        </ul>
 
-    <!-- Navbar -->
-    <header class="navbar">
-        <div class="logo">MyBrand</div>
-        <nav>
-            <ul class="nav-links">
-                <li><a href="#">خانه</a></li>
-                <li><a href="#">خدمات</a></li>
-                <li><a href="#">درباره ما</a></li>
-                <li><a href="#">تماس</a></li>
-            </ul>
-        </nav>
-    </header>
+        <div class="nav-icons">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+            </svg>
+            <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/>
+            </svg>
+            <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/>
+            </svg>
+        </div>
+    </nav>
 
     <!-- Hero Section -->
     <section class="hero">
-        <h1>به دوره CSS خوش آمدید</h1>
-        <p>یادگیری طراحی وب از پایه تا چیدمان حرفه‌ای</p>
-        <button>شروع کنید</button>
-    </section>
-
-    <!-- Cards Section -->
-    <section class="cards">
-        <div class="card">
-            <h3>طراحی مدرن</h3>
-            <p>با استفاده از Flexbox و Grid طراحی حرفه‌ای انجام دهید.</p>
-        </div>
-
-        <div class="card">
-            <h3>کدنویسی استاندارد</h3>
-            <p>ساختار تمیز و قابل توسعه برای پروژه‌های واقعی.</p>
-        </div>
-
-        <div class="card">
-            <h3>ریسپانسیو</h3>
-            <p>استفاده از واحدهای مناسب برای سازگاری بهتر.</p>
+        <div class="hero-content">
+            <h1>به استایل شیک خوش آمدید</h1>
+            <p>جدیدترین ترندهای فصل را با ما تجربه کنید</p>
+            <a href="#" class="btn">مشاهده محصولات</a>
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- Features با Flexbox -->
+    <section class="features">
+        <div class="feature-item">
+            <div class="feature-icon">🚚</div>
+            <h3>ارسال رایگان</h3>
+            <p>برای خریدهای بالای ۵۰۰ هزار تومان</p>
+        </div>
+        <div class="feature-item">
+            <div class="feature-icon">🔄</div>
+            <h3>۷ روز ضمانت بازگشت</h3>
+            <p>با پشتیبانی کامل</p>
+        </div>
+        <div class="feature-item">
+            <div class="feature-icon">💳</div>
+            <h3>پرداخت در محل</h3>
+            <p>امکان پرداخت هنگام تحویل</p>
+        </div>
+        <div class="feature-item">
+            <div class="feature-icon">✨</div>
+            <h3>تضمین اصالت کالا</h3>
+            <p>بهترین کیفیت بازار</p>
+        </div>
+    </section>
+
+    <!-- Products Grid -->
+    <section class="products-section">
+        <div class="section-title">
+            <h2>محصولات پرفروش</h2>
+            <p>محبوب‌ترین محصولات هفته بر اساس نظرات مشتریان عزیز</p>
+        </div>
+        
+        <div class="products-grid">
+            <!-- Product Card 1 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_t.png" alt="تیشرت مردانه">
+                    <span class="product-tag">محبوب</span>
+                </div>
+                <div class="product-info">
+                    <div class="product-category">لباس مردانه</div>
+                    <div class="product-title">تیشرت اسلیم فیت کژوال</div>
+                    <div class="product-price">
+                        <span class="current-price">۸۹۲,۰۰۰</span>
+                        <span class="old-price">۱,۲۵۰,۰۰۰</span>
+                    </div>
+                    <button class="add-to-cart">افزودن به سبد خرید</button>
+                </div>
+            </div>
+
+            <!-- Product Card 2 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://fakestoreapi.com/img/61sbMiUnoGL._AC_UL640_QL65_ML3_t.png" alt="دستبند طلا">
+                    <span class="product-tag">جدید</span>
+                </div>
+                <div class="product-info">
+                    <div class="product-category">جواهرات</div>
+                    <div class="product-title">دستبند طلای میکروپاو جامد</div>
+                    <div class="product-price">
+                        <span class="current-price">۶,۷۲۰,۰۰۰</span>
+                    </div>
+                    <button class="add-to-cart">افزودن به سبد خرید</button>
+                </div>
+            </div>
+
+            <!-- Product Card 3 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://fakestoreapi.com/img/61U7T1koQqL._AC_SX679_t.png" alt="SSD داخلی">
+                    <span class="product-tag">تخفیف</span>
+                </div>
+                <div class="product-info">
+                    <div class="product-category">الکترونیکی</div>
+                    <div class="product-title">SSD داخلی سندیسک پلاس 1TB</div>
+                    <div class="product-price">
+                        <span class="current-price">۴,۳۶۰,۰۰۰</span>
+                    </div>
+                    <button class="add-to-cart">افزودن به سبد خرید</button>
+                </div>
+            </div>
+
+            <!-- Product Card 4 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://fakestoreapi.com/img/51Y5NI-I5jL._AC_UX679_t.png" alt="کاپشن زنانه">
+                </div>
+                <div class="product-info">
+                    <div class="product-category">لباس زنانه</div>
+                    <div class="product-title">کاپشن اسکی سه‌منظوره قابل‌جدا‌شدگی</div>
+                    <div class="product-price">
+                        <span class="current-price">۲,۲۷۹,۶۰۰</span>
+                    </div>
+                    <button class="add-to-cart">افزودن به سبد خرید</button>
+                </div>
+            </div>
+
+            <!-- Product Card 5 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://fakestoreapi.com/img/71YXzeOuslL._AC_UY879_t.png" alt="شلوار مردانه">
+                </div>
+                <div class="product-info">
+                    <div class="product-category">لباس مردانه</div>
+                    <div class="product-title">شلوار کژوال اسلیم فیت مردانه</div>
+                    <div class="product-price">
+                        <span class="current-price">۶۳۹,۶۰۰</span>
+                    </div>
+                    <button class="add-to-cart">افزودن به سبد خرید</button>
+                </div>
+            </div>
+
+            <!-- Product Card 6 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://fakestoreapi.com/img/51UDEzMJVpL._AC_UL640_QL65_ML3_t.png" alt="گوشواره طلایی">
+                </div>
+                <div class="product-info">
+                    <div class="product-category">جواهرات</div>
+                    <div class="product-title">گوشواره استیل ضد زنگ دوپوسته طلایی</div>
+                    <div class="product-price">
+                        <span class="current-price">۴۳۹,۶۰۰</span>
+                    </div>
+                    <button class="add-to-cart">افزودن به سبد خرید</button>
+                </div>
+            </div>
+
+            <!-- Product Card 7 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://fakestoreapi.com/img/81fPKd-2AYL._TC_t.png" alt="کوله پشتی">
+                    <span class="product-tag">محبوب</span>
+                </div>
+                <div class="product-info">
+                    <div class="product-category">اکسسوری</div>
+                    <div class="product-title">کوله فولدسک برای لپ تاپ 15 اینچی</div>
+                    <div class="product-price">
+                        <span class="current-price">۴,۳۹۸,۰۰۰</span>
+                    </div>
+                    <button class="add-to-cart">افزودن به سبد خرید</button>
+                </div>
+            </div>
+
+            <!-- Product Card 8 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://fakestoreapi.com/img/71li-ujtlUL._AC_UX679_t.png" alt="ژاکت مردانه">
+                </div>
+                <div class="product-info">
+                    <div class="product-category">لباس مردانه</div>
+                    <div class="product-title">ژاکت پنبه‌ای مردانه برای تمام فصول</div>
+                    <div class="product-price">
+                        <span class="current-price">۲,۲۳۹,۶۰۰</span>
+                    </div>
+                    <button class="add-to-cart">افزودن به سبد خرید</button>
+                </div>
+            </div>
+
+            <!-- Product Card 9 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://fakestoreapi.com/img/61IBBVJvSDL._AC_SY879_t.png" alt="هارد درایو خارجی">
+                    <span class="product-tag">تخفیف</span>
+                </div>
+                <div class="product-info">
+                    <div class="product-category">الکترونیکی</div>
+                    <div class="product-title">هارد درایو خارجی قابل حمل WD 2TB</div>
+                    <div class="product-price">
+                        <span class="current-price">۲,۵۶۰,۰۰۰</span>
+                    </div>
+                    <button class="add-to-cart">افزودن به سبد خرید</button>
+                </div>
+            </div>
+
+            <!-- Product Card 10 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://fakestoreapi.com/img/71pWzhdJNwL._AC_UL640_QL65_ML3_t.png" alt="دستبند سیاه">
+                </div>
+                <div class="product-info">
+                    <div class="product-category">جواهرات</div>
+                    <div class="product-title">دستبند نقره‌ای جان هاردی ناگا</div>
+                    <div class="product-price">
+                        <span class="current-price">۲۷,۸۰۰,۰۰۰</span>
+                    </div>
+                    <button class="add-to-cart">افزودن به سبد خرید</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories با Flexbox -->
+    <section class="categories">
+        <div class="section-title">
+            <h2>دسته‌بندی محصولات</h2>
+            <p>بر اساس سلیقه خود دسته مورد نظر را انتخاب کنید</p>
+        </div>
+
+        <div class="categories-grid">
+            <div class="category-card">
+                <img src="https://fakestoreapi.com/img/71li-ujtlUL._AC_UX679_t.png" alt="لباس مردانه">
+                <div class="category-overlay">
+                    <h3>لباس مردانه</h3>
+                    <p>۱۲۵ محصول</p>
+                </div>
+            </div>
+            <div class="category-card">
+                <img src="https://fakestoreapi.com/img/81XH0e8fefL._AC_UY879_t.png" alt="لباس زنانه">
+                <div class="category-overlay">
+                    <h3>لباس زنانه</h3>
+                    <p>۲۱۲ محصول</p>
+                </div>
+            </div>
+            <div class="category-card">
+                <img src="https://fakestoreapi.com/img/71YAIFU48IL._AC_UL640_QL65_ML3_t.png" alt="جواهرات">
+                <div class="category-overlay">
+                    <h3>جواهرات</h3>
+                    <p>۱۷۸ محصول</p>
+                </div>
+            </div>
+            <div class="category-card">
+                <img src="https://fakestoreapi.com/img/81Zt42ioCgL._AC_SX679_t.png" alt="الکترونیکی">
+                <div class="category-overlay">
+                    <h3>الکترونیکی</h3>
+                    <p>۲۳۴ محصول</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter">
+        <div class="newsletter-content">
+            <h2>از تخفیف‌ها و جدیدترین‌ها با خبر شوید!</h2>
+            <p>با عضویت در خبرنامه، اولین نفری باشید که از تخفیف‌های ویژه مطلع می‌شوید</p>
+            <div class="newsletter-form">
+                <input type="email" placeholder="آدرس ایمیل خود را وارد کنید">
+                <button type="submit">عضویت</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer با Grid -->
     <footer class="footer">
-        <p>© 2026 تمامی حقوق محفوظ است</p>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>درباره ما</h3>
+                <p>استایل شیک با بیش از ۱۰ سال سابقه درخشان در زمینه فروش پوشاک، همواره تلاش کرده بهترین کیفیت را با مناسب‌ترین قیمت به مشتریان عزیز ارائه دهد.</p>
+            </div>
+            
+            <div class="footer-section">
+                <h3>دسترسی سریع</h3>
+                <ul>
+                    <li><a href="#">خانه</a></li>
+                    <li><a href="#">محصولات</a></li>
+                    <li><a href="#">درباره ما</a></li>
+                    <li><a href="#">تماس با ما</a></li>
+                    <li><a href="#">سوالات متداول</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3>تماس با ما</h3>
+                <ul>
+                    <li>تلفن: ۰۲۱-۱۲۳۴۵۶۷۸</li>
+                    <li>ایمیل: info@shayk-shop.ir</li>
+                    <li>آدرس: تهران، خیابان ولیعصر، پلاک ۱۲۳</li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3>ما را دنبال کنید</h3>
+                <div class="social-links">
+                    <a href="#">📱</a>
+                    <a href="#">📘</a>
+                    <a href="#">📷</a>
+                    <a href="#">🐦</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>تمامی حقوق برای فروشگاه استایل شیک محفوظ است © ۱۴۰۳</p>
+        </div>
     </footer>
-
 </body>
 </html>
